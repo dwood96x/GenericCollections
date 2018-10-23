@@ -10,7 +10,7 @@ namespace Generic_Collections
     {
         static void Main(string[] args)
         {
-            var d = new MyDictionary();
+            var d = new MyDictionary<string,int>();
             try
             {
                 Console.WriteLine(d["Cats"]);
@@ -21,40 +21,40 @@ namespace Generic_Collections
             }
             d["Cats"] = 42;
             d["Dogs"] = 17;
-            Console.WriteLine($"{(int)d["Cats"]}, {(int)d["Dogs"]}");
+            Console.WriteLine($"{d["Cats"]}, {d["Dogs"]}");
         }
     }
-    struct KeyValue
+    struct KeyValue<KeyType, ValueType>
     {
-        public string key { get; }
-        public object value { get; }
-        public KeyValue(string _key,object _value)
+        public KeyType key { get; }
+        public ValueType value { get; }
+        public KeyValue(KeyType _key, ValueType _value)
         {
             key = _key;
             value = _value;
         }
     }
-    class MyDictionary
+    class MyDictionary<KeyType, ValueType>
     {
-        private KeyValue[] keys = new KeyValue[50];
+        private KeyValue<KeyType,ValueType>[] keys = new KeyValue<KeyType,ValueType>[50];
         private int NumOfKeys = 0;
 
-        public object this[string key]
+        public ValueType this[KeyType key]
         {
             set
             {
                 bool exist = false;
                 for (int i = 0; i < keys.Length; i++)
                 {
-                    if (keys[i].key == key)
+                    if (keys[i].key.Equals(key))
                     {
-                        keys[i] = new KeyValue(key, keys[i].value);
+                        keys[i] = new KeyValue<KeyType, ValueType>(key, keys[i].value);
                         exist = true;
                     }
                 }
                 if (exist == false)
                 {
-                    keys[NumOfKeys] = new KeyValue(key, value);
+                    keys[NumOfKeys] = new KeyValue<KeyType, ValueType>(key, value);
                     NumOfKeys += 1;
                 }
             }
@@ -62,7 +62,7 @@ namespace Generic_Collections
             {
                 for (int i = 0; i < keys.Length; i++)
                 {
-                    if (keys[i].key == key)
+                    if (keys[i].key.Equals(key))
                     {
                         return keys[i].value;
                     }
