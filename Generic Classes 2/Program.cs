@@ -79,7 +79,7 @@ namespace Generic_Collections_2
             {
                 Console.Write(item.ToString() + " ");
             }
-            Console.WriteLine("\nSorted list");
+            Console.WriteLine("\nSorted list are sorted in ascending order by default. Whenver you add/remove it gets sorted again.");
             hashset.Add("Apple");
             hashset.Add("Banana");
             hashset.Add("Cat");
@@ -90,7 +90,7 @@ namespace Generic_Collections_2
             {
                 Console.Write(item.ToString() + " ");
             }
-            Console.WriteLine("\nHashset");
+            Console.WriteLine("\nHashsets are sets which mean they have no order. They also don't take duplicates. On the \nother hand they can provide performance boost compared to other data structures");
         }
     }
 }
