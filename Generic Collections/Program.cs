@@ -10,18 +10,18 @@ namespace Generic_Collections
     {
         static void Main(string[] args)
         {
-            var d = new MyDictionary<string,int>();
+            var dict = new MyDictionary<string,int>();
             try
             {
-                Console.WriteLine(d["Cats"]);
+                Console.WriteLine(dict["Cats"]);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
-            d["Cats"] = 42;
-            d["Dogs"] = 17;
-            Console.WriteLine($"{d["Cats"]}, {d["Dogs"]}");
+            dict["Cats"] = 42;
+            dict["Dogs"] = 17;
+            Console.WriteLine($"{dict["Cats"]}, {dict["Dogs"]}");
         }
     }
     struct KeyValue<KeyType, ValueType>
@@ -46,7 +46,7 @@ namespace Generic_Collections
                 bool exist = false;
                 for (int i = 0; i < keys.Length; i++)
                 {
-                    if (keys[i].key.Equals(key))
+                    if (keys[i].Equals(key))
                     {
                         keys[i] = new KeyValue<KeyType, ValueType>(key, keys[i].value);
                         exist = true;
